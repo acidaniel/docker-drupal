@@ -1,0 +1,63 @@
+name: Test project 
+type: profile
+description: 'Test project installation profile'
+core: 8.x
+
+dependencies:
+# Core modules
+  - automated_cron
+  - block
+  - block_content
+  - breakpoint
+  - ckeditor
+#  - color
+#  - comment
+  - config
+  - config_translation
+#  - contact
+  - content_translation
+  - contextual
+  - datetime
+  - dblog
+  - dynamic_page_cache
+  - editor
+  - field
+  - field_ui #comment in prod
+  - file
+  - filter
+  - help
+  - history
+  - image
+  - link
+  - locale
+#  - menu_link_content
+  - menu_ui
+  - node
+  - options
+  - page_cache
+  - path
+  - quickedit
+#  - rdf
+  - responsive_image
+#  - rest
+#  - search
+#  - serialization
+  - shortcut
+  - system
+  - taxonomy
+  - telephone
+  - text
+  - toolbar
+  - tour
+  - update
+  - user
+  - views
+  - views_ui #comment in prod
+# Contrib modules
+  - admin_toolbar
+  - components
+  - config_update_ui
+
+themes:
+  - seven
+  - zen

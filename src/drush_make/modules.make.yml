@@ -1,0 +1,21 @@
+api: 2
+
+core: "8.x"
+
+defaults:
+  projects:
+    overwrite: TRUE
+
+projects:
+  admin_toolbar:
+    type: "module"
+    version: "1.17"
+
+  components:
+    type: "module"
+    version: "1.0"
+
+  config_update:
+    type: "module"
+    version: "1.1"
+

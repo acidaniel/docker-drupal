@@ -1,0 +1,50 @@
+version: "2"
+
+services:
+  web:
+    container_name: test_web
+    build:
+      context: ./src/docker/php
+      dockerfile: Dockerfile
+#     dockerfile: Dockerfile-xdebug 
+    ports:
+      - "8090:80"
+    volumes:
+      - ./build:/srv
+      - ./src/test_project:/srv/profiles/test_project
+    links:
+      - mailhog:mailhog
+      - mysql:mysql
+    depends_on:
+      - mailhog
+      - mysql
+    restart: always
+    command: php -t /srv -S 0.0.0.0:80 .ht.router.php
+    networks:
+      - back
+
+  mysql:
+    image: percona:5.7
+    container_name: test_mysql
+    volumes:
+      - /dev/shm/mysql-test-dev:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: d8
+      MYSQL_USER: d8
+      MYSQL_PASSWORD: d8
+      MYSQL_ROOT_PASSWORD: d8root
+    restart: always
+    networks:
+      - back
+
+  mailhog:
+    image: diyan/mailhog
+    container_name: test_mail
+    restart: always
+    networks:
+      - back
+
+networks:
+  back:
+    driver: bridge
+

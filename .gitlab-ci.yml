@@ -1,0 +1,50 @@
+image: acidaniel/php7:git
+
+variables:
+  GIT_DEPTH: "3"
+
+before_script:
+  - date
+
+stages:
+  - sniffers
+  - build
+  - test
+
+build:
+  stage: build
+  script:
+  - time drush make src/drush_make/profile.make.yml --prepare-install --overwrite -y build
+  - cp -R src/test_project build/profiles
+  - cd build
+  - ls -la profiles
+  dependencies:
+  - sniffers:phpcs
+  artifacts:
+    expire_in: 7d
+    paths:
+    - build/
+
+sniffers:phpcs:
+  stage: sniffers
+  image: acidaniel/php7:sniffers
+  script:
+  - cd src/test_project/modules
+  - pwd
+  - phpcs --standard="Drupal" . --report=summary || echo
+  - phpcs --standard="Drupal" .
+  
+test:install:
+  stage: test
+  script:
+  -  cd build
+  - curl https://www.drupal.org/files/issues/call_to_a_member-2608408-28.patch | patch -p1
+  - curl https://www.drupal.org/files/issues/2348137-3.patch | patch -p1
+  - ls -la profiles
+  - echo "sendmail_path=/bin/true" >> /etc/php7/conf.d/xx-drupal.ini
+  - time drush si test_project --db-url=sqlite:///dev/shm/sqlite.$CI_PIPELINE_ID --account-pass=admin -y --site-name=Unim.build
+  - drush st
+  - drush ups
+  dependencies:
+  - build
+
