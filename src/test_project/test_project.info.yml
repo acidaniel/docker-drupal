@@ -57,6 +57,7 @@ dependencies:
   - admin_toolbar
   - components
   - config_update_ui
+  - ds
 
 themes:
   - seven
