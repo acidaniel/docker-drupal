@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_materia
+    - node.type.test_materias
+    - node.type.test_teacher
+id: node.test_teacher.field_materia
+field_name: field_materia
+entity_type: node
+bundle: test_teacher
+label: Materia
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      test_materias: test_materias
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

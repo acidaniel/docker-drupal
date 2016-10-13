@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_nombre_materia
+    - node.type.test_materias
+id: node.test_materias.field_nombre_materia
+field_name: field_nombre_materia
+entity_type: node
+bundle: test_materias
+label: 'Nombre Materia'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

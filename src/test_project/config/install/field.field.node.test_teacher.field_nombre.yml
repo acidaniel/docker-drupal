@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_nombre
+    - node.type.test_teacher
+id: node.test_teacher.field_nombre
+field_name: field_nombre
+entity_type: node
+bundle: test_teacher
+label: Nombre
+description: 'Nombre Profesor'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
